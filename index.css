@@ -1,0 +1,42 @@
+.index{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.description{
+    display: flex;
+    width:80%;
+    flex-direction: column;
+    align-self: center;
+    margin-bottom: 20px;
+}
+.description-header{
+    display: flex;
+    align-self: center;
+    margin-bottom: 10px;
+}
+.latest-results{
+    display:flex;
+    flex-direction: column;
+    width:80%;
+    align-self: center;
+}
+.results-header{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+.fig-div{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+.fig3{
+    width:100%;
+}
+.fig4{
+    width:100%;
+}
+.fig9{
+    width:100%;
+}

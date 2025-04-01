@@ -1,0 +1,12 @@
+.fig{
+    width:60%;
+}
+.parent{
+    display: flex;
+    flex-direction: column;
+    width:80%;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+}

@@ -1,0 +1,27 @@
+.link-p{
+    margin:10px;
+}
+.about{
+    display: flex;
+    flex-direction: column;
+}
+.parent{
+    display: flex;
+    flex-direction: column;
+    width:80%;
+    align-self: center;
+}
+.link-headers{
+    align-self: center;
+}
+
+.resemblance-header{
+    align-self: center;
+}
+.resemblance-figure{
+    width:60%;
+}
+
+.methodology-header{
+    align-self: center;
+}

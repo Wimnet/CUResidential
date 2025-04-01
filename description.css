@@ -1,0 +1,64 @@
+.description-page{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+.methodology{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+.methodology-header{
+    align-self: center;
+}
+.methodology-figure{
+    margin-bottom: 20px;
+    width:60%;
+    align-self: center;
+}
+
+.description{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+.description-header{
+    align-self: center;
+}
+.metadata-fig{
+    margin-bottom: 20px;
+    width:60%;
+    align-self: center;
+}
+
+.access-condition{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-bottom: 20px;
+
+}
+.access-condition-header{
+    align-self: center;
+}
+
+.access-request{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.access-request form{
+    display: flex;
+    flex-direction: column;
+}
+button{
+    width:10%;
+    background-color: gray;
+}
+.access-request-header{
+    align-self: center;
+}
+
