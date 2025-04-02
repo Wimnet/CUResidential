@@ -3,7 +3,7 @@
     flex-direction: column;
     width: 100%;
 }
-.description{
+.parent{
     display: flex;
     width:80%;
     flex-direction: column;
