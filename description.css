@@ -1,64 +1,75 @@
-.description-page{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
+.description-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
 }
-.methodology{
-    display: flex;
-    flex-direction: column;
-    width: 80%;
+.methodology {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
 }
-.methodology-header{
-    align-self: center;
+.inside {
+  padding-left: 3%;
 }
-.methodology-figure{
-    margin-bottom: 20px;
-    width:60%;
-    align-self: center;
+.outside {
+  padding-left: 3%;
 }
-
-.description{
-    display: flex;
-    flex-direction: column;
-    width: 80%;
+.methodology-header {
+  align-self: center;
 }
-.description-header{
-    align-self: center;
-}
-.metadata-fig{
-    margin-bottom: 20px;
-    width:60%;
-    align-self: center;
+.methodology-figure {
+  margin-bottom: 20px;
+  width: 60%;
+  align-self: center;
 }
 
-.access-condition{
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin-bottom: 20px;
-
+.description {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
 }
-.access-condition-header{
-    align-self: center;
+.description-header {
+  align-self: center;
 }
-
-.access-request{
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin-bottom: 20px;
+.metadata-fig {
+  margin-bottom: 20px;
+  width: 60%;
+  align-self: center;
 }
 
-.access-request form{
-    display: flex;
-    flex-direction: column;
+.access-condition {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-bottom: 20px;
 }
-button{
-    width:10%;
-    background-color: gray;
-}
-.access-request-header{
-    align-self: center;
+.access-condition-header {
+  align-self: center;
 }
 
+.access-request {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.access-request form {
+  display: flex;
+  flex-direction: column;
+}
+
+.access-request-header {
+  align-self: center;
+}
+.figures {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.metadata {
+  margin-bottom: 30px;
+}

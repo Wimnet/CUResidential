@@ -1,42 +1,74 @@
-.index{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+h1 {
+  font-weight: 400;
 }
-.parent{
-    display: flex;
-    width:80%;
-    flex-direction: column;
-    align-self: center;
-    margin-bottom: 20px;
+h2 {
+  font-weight: 600;
 }
-.description-header{
-    display: flex;
-    align-self: center;
-    margin-bottom: 10px;
+.index {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 400;
 }
-.latest-results{
-    display:flex;
-    flex-direction: column;
-    width:80%;
-    align-self: center;
+.parent {
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  align-self: center;
+  margin-bottom: 20px;
 }
-.results-header{
-    display: flex;
-    flex-direction: column;
-    align-self: center;
+.description-header {
+  display: flex;
+  align-self: center;
+  margin-bottom: 10px;
 }
-.fig-div{
-    display: flex;
-    flex-direction: column;
-    align-self: center;
+.description-text {
+  margin-bottom: 10px;
 }
-.fig3{
-    width:100%;
+.latest-results {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  align-self: center;
 }
-.fig4{
-    width:100%;
+.results-header {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin-bottom: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 500;
 }
-.fig9{
-    width:100%;
+.fig-div {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+}
+.fig3 {
+  width: 70%;
+}
+.fig4 {
+  width: 70%;
+}
+.fig9 {
+  width: 100%;
+}
+.fig-description {
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+.fig {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.footer {
+  width: 100%;
+  height: 50px;
 }

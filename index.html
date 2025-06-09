@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- TODO: Add PDF emoji in front of the link-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +7,7 @@
     <title>Columbia Residential Traffic Analysis</title>
     <link rel="stylesheet" href="header_css.css">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <!--
@@ -42,40 +44,49 @@ Case Studies or blog posts (if further studies is intended)
             <img src="./figures/logo.png" alt="" class = "logo-img">
         </div>
         <div class = "nav-bar">
-            <div class = "middle-nav-bar"></div>
+            <div class = "middle-nav-bar">
+                <a href="./index.html">About</a>
+                <a href="./about.html">Methodology</a>
+                <a href="./description.html">Data Description</a>
+            </div>
         </div>
 
     </header>
  
     <div class = "index">
-        <div class = "parent">
-            <p class = "description-text">We provide
-                access to a new residential dataset — we have been collecting traffic from ~1000 off-campus residences that
-                house faculty, postdocs, graduate students and their families. Although our residents are university affiliates,
-                our dataset is residential as it captures their activity at home, and we show that this dataset offers a distinct
-                perspective from the campus and dorm traffic. We investigate the serving infrastructure and service accessed
-                by the residences, revealing several interesting findings: peer-to-peer activity is notable, comprising 47% of the
-                total time spent by users; CDNs such as Cloudflare host many services (19%) but serve much less traffic (2%);
-                and 11 of the top 100 services that have nearby servers often serve users from at least 1,000km farther away.
-                This broad analysis, as well as our data sharing, pushes toward a more thorough understanding of Internet
-                service usage and delivery, motivating and supporting future research.</p>
+        <div class = "description parent">
+            <p class = "description-text">This project presents a new, openly shared dataset capturing real-world Internet traffic from ~1000 residential units housing university affiliates. By analyzing this unique data, we uncover how services are delivered to homes—highlighting patterns like high peer-to-peer usage, mismatches between server proximity and traffic routing, and underutilized third-party CDNs. Our findings aim to deepen understanding of modern residential Internet usage and infrastructure.</p>
+            <p class = "description-text"><a href="https://dl.acm.org/doi/10.1145/3727133"><i class="fa fa-file-pdf-o" style="font-size:20px;color:red"></i> Internet Service Usage and Delivery As Seen From a Residential Network</a></p>
         </div>
-        <div class = "parent">
-            <h1>Dataset</h1>
-            <p class = "dataset-text">We are in the process of identifying a suitable data platform for sharing our dataset. Updates on availability and access details will be provided soon.</p>
+        <div class = "latest-results">
+            <h1 class = "results-header"> Latest Results </h1>
+            <h2 class = "remote-fig-description"> Remote Host Categories: Flows, Traffic & Duration </h2>
+            <div class = 'fig-div'>
+                <img src="./figures/fig3.png" alt="" class = "fig3 fig">
+                <p>We classify the remote hosts accessed by our users as servers, P2P users, and unauthorized devices. While servers account for 93% of traffic, P2P hosts—77% of remote hosts—contribute only 5% of traffic but 47% of total flow duration, reflecting usage like file sharing and video calls. Unauthorized devices are frequent but mostly generate scanning traffic.</p>
+            </div>
+
+            <h2 class = "fig-description"> Top Organizations: Domains Hosted vs. Traffic Served </h2>
+            <div class = "fig-div">
+                <img src="./figures/fig4.png" alt="" class = "fig4 fig">
+                <p>We analyzed which organizations serve traffic to our users and found that a few major players dominate. While CDNs like Cloudflare host many domains (e.g., 19%), they serve relatively little traffic (only 2%), suggesting those sites are smaller or less frequently visited. In contrast, Google, Amazon, and video-focused CDNs like Akamai and Fastly contribute significantly more traffic volume.</p>
+            </div>
+
+            <h2 class = "fig-description"> Organizations on the Path Between Users and Services </h2>
+            <div class = "fig-div">
+                <img src="./figures/fig13.png" alt="" class = "fig4 fig">
+                <p>This Sankey diagram shows how traffic flows from our residential users to major service providers. We highlight only the organizations contributing over 1.2% of traffic. Amazon directly peers with the university and carries 9% of user traffic. Netflix accounts for 6%, served through off-net caches hosted by NYSERNet, a regional research network. The remaining traffic passes through upstream providers of Columbia to clouds, CDNs, and other popular services.</p>
+            </div>
+
+            <h2 class = "fig-description"> Service Usage Varies by Metric and Resident Type </h2>
+            <div class = 'fig-div'>
+                <img src="./figures/fig9.png" alt="" class = "fig9 fig">
+                <p>We evaluate service popularity using four metrics: traffic volume, flow count, flow duration, and DNS activity. These metrics often highlight different top services—for instance, iCloud generates less traffic than YouTube but has three times the flow duration. We also find notable usage differences between resident types: graduate students favor YouTube, Hulu, and Instagram, while faculty and families use more Netflix, iCloud, and Playstation. These patterns show that service usage varies both by measurement method and user demographic, even within a single university community.</p>
+            </div>
         </div>
-        <div class = "parent">
-            <h1>Publications</h1>
-            <p class = "publications-text">Shuyue Yu, Thomas Koch, Ilgar Mammadov, Hangpu Cao, Gil Zussman, and Ethan Katz-Bassett. 2025. Understanding Internet Service Usage and Delivery from a Residential Network. Proceedings of the ACM on Measurement and Analysis of Computing Systems (Proc. ACM Meas. Anal. Comput. Syst.) 9, 2, Article 41 (June 2025), 30 pages.</p>
+        <div class = "footer">
+            
         </div>
-        <div class = "parent">
-            <h1>Contact person</h1>
-            <p>Shuyue Yu</p>
-            <p>Columbia University</p>
-            <p>Email: sy3011[at]columbia.edu</p>
-        </div>
-                
-                
     </div>
 </body>
 </html>

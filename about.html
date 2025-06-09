@@ -20,40 +20,256 @@ About:
         </div>
         <div class = "nav-bar">
             <div class = "middle-nav-bar">
-                <a href="./about.html">About</a>
-                <a href="./description.html">Data Description</a>
-                <a href="./results.html">Latest Results</a>
-                <a href="./previous.html">Previous Results</a>
-                <a href="./longitudinal.html">Longitudinal Results</a>
-                <a href="./case.html">Case Studies (or blog posts) if further studies intended</a>
+                <a href="./index.html">About</a>
+                <a href="./about.html">Methodology</a>
+                <a href="./description.html">Data Description and Sharing</a>
             </div>
         </div>
 
     </header>
 
     <div class = "about">
-        <div class = "links parent">
-            <h1 class = "link-headers">Resources</h1>
-            <p class = "link-p"><a href="">(Paper Pdf) Understanding Internet Service Usage and Delivery from a Residential Network</a></p>
-            <p class = "link-p"><a href="">Data Platform</a></p>
-        </div>
-        <div class = "resemblance parent">
-            <h1 class = "resemblance-header">Data Resemblance</h1>
-            <img src="./figures/resemblance.png" alt="" class = "resemblance-figure">
-            </div>
-        </div>
         <div class = "methodology parent">
-            <h1 class = "methodology-header">Analysis Methodology</h1>
-            <p class = "methodology-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Pariatur assumenda, maiores dolores dignissimos perferendis quidem culpa inventore 
-                repellat provident impedit praesentium porro neque incidunt mollitia. Ad beatae 
-                dolorem molestias consequatur? Lorem ipsum, dolor sit amet consectetur adipisicing 
-                elit. Minus illum fuga harum sed. Unde a ab magnam totam. Incidunt eius reiciendis 
-                quasi dolorum enim. Id aliquam rem sequi cum commodi. Lorem ipsum dolor sit amet consectetur 
-                adipisicing elit. Cum delectus, inventore harum dicta blanditiis, non atque unde laboriosam 
-                tenetur molestiae id error eos incidunt doloribus praesentium voluptatibus repudiandae iste reprehenderit?</p>
+            <div class = "data-collection">
+            <h1 class = "methodology-header">Data collection and anonymization pipeline</h1>
+            <div class = 'fig-div'>
+                <img src="./figures/fig14.png" alt="" class = "fig3 fig">
+                <p></p>
+            </div>
+            <p class = "methodology-text">This diagram shows the layout of our residential network. Each apartment connects to a building switch, which aggregates to a central switch that links to the Internet via Columbia’s campus network. We mirror all incoming and outgoing traffic over dedicated fiber to a nearby lab server. Our custom pipeline captures and processes IPv4 traffic only, extracting fields like DNS and TLS data, anonymizing sensitive information (e.g., MAC/IP addresses), and discarding payloads beyond layer 4. DNS traffic is recorded continuously for six hours, with raw traffic sampled during the final hour. We rotate anonymization keys every cycle to protect privacy and collect four nonconsecutive hours of data per day. In early 2024, our dataset grew to 943 apartments, generating an average of 305GB of traffic and 217 million packets per hour. All collection was approved by Columbia IT and IRB-reviewed.</p>
+            </div>
+            <h1 class = "methodology-header">Mapping flows to services</h1>
+            
+            <p class = "methodology-text">We associate each flow with a service (e.g., Netflix, YouTube) using a combination of domain keyword matching, unsupervised clustering, and transport-layer heuristics:
+
+            <h2>Keyword-Based Mapping:</h2>
+            <p>We match ⟨DNS, SNI⟩ domain pairs against a curated list of ~200 service-related keywords (e.g., domains containing "nflx" are mapped to Netflix). This rule-based mapping, built upon the public nDPI keyword set, accounts for 73% of traffic by volume. The list of keywords is provided below:</p>
+            <table style="width:100%; border-collapse: collapse; font-family: Arial, sans-serif; margin: 20px 0;">
+  <thead style="background-color: #f2f2f2;">
+    <tr>
+      <th style="padding: 12px; border: 1px solid #ccc; text-align: left;">Keyword</th>
+      <th style="padding: 12px; border: 1px solid #ccc; text-align: left;">Service</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">nflx</td><td style="padding: 10px; border: 1px solid #eee;">netflix</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">hbomax</td><td style="padding: 10px; border: 1px solid #eee;">hbomax</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">apple-dns</td><td style="padding: 10px; border: 1px solid #eee;">icloud</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">icloud</td><td style="padding: 10px; border: 1px solid #eee;">icloud</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">tv.apple</td><td style="padding: 10px; border: 1px solid #eee;">appletv</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">itunes</td><td style="padding: 10px; border: 1px solid #eee;">applestore</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">aapl</td><td style="padding: 10px; border: 1px solid #eee;">icloud</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">instagram</td><td style="padding: 10px; border: 1px solid #eee;">instagram</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">blizzard</td><td style="padding: 10px; border: 1px solid #eee;">blizzard</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">hulu</td><td style="padding: 10px; border: 1px solid #eee;">hulu</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">icloud</td><td style="padding: 10px; border: 1px solid #eee;">icloud</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">steam</td><td style="padding: 10px; border: 1px solid #eee;">steam</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">outlook</td><td style="padding: 10px; border: 1px solid #eee;">microsoftcloud</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">twimg</td><td style="padding: 10px; border: 1px solid #eee;">twitter</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">googlevideo</td><td style="padding: 10px; border: 1px solid #eee;">youtube</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">tiktok</td><td style="padding: 10px; border: 1px solid #eee;">tiktok</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">cdn-apple</td><td style="padding: 10px; border: 1px solid #eee;">icloud</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">espn</td><td style="padding: 10px; border: 1px solid #eee;">espn</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">movetv</td><td style="padding: 10px; border: 1px solid #eee;">movetv</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">redd.it</td><td style="padding: 10px; border: 1px solid #eee;">reddit</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">spotify</td><td style="padding: 10px; border: 1px solid #eee;">spotify</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">zoom</td><td style="padding: 10px; border: 1px solid #eee;">zoom</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">slack</td><td style="padding: 10px; border: 1px solid #eee;">slack</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">peacock</td><td style="padding: 10px; border: 1px solid #eee;">peacock</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">gmail</td><td style="padding: 10px; border: 1px solid #eee;">gmail</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">ytimg</td><td style="padding: 10px; border: 1px solid #eee;">youtube</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">fitbit</td><td style="padding: 10px; border: 1px solid #eee;">fitbit</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">stripe</td><td style="padding: 10px; border: 1px solid #eee;">stripe</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">bestbuy</td><td style="padding: 10px; border: 1px solid #eee;">bestbuy</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">roblox</td><td style="padding: 10px; border: 1px solid #eee;">roblox</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">youtube</td><td style="padding: 10px; border: 1px solid #eee;">youtube</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">ookla</td><td style="padding: 10px; border: 1px solid #eee;">ookla</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">sling.com</td><td style="padding: 10px; border: 1px solid #eee;">sling</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">cdn-apple</td><td style="padding: 10px; border: 1px solid #eee;">applecdn</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">apple</td><td style="padding: 10px; border: 1px solid #eee;">icloud</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">fbcdn</td><td style="padding: 10px; border: 1px solid #eee;">facebook</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">facetime.apple</td><td style="padding: 10px; border: 1px solid #eee;">facetime</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">messenger.com</td><td style="padding: 10px; border: 1px solid #eee;">facebookmessenger</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">ttvnw</td><td style="padding: 10px; border: 1px solid #eee;">twitch</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">photosdata-pa.googleapis</td><td style="padding: 10px; border: 1px solid #eee;">googlephotos</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">uploadgig</td><td style="padding: 10px; border: 1px solid #eee;">uploadgig</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">idrive</td><td style="padding: 10px; border: 1px solid #eee;">idrive</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">wireguard</td><td style="padding: 10px; border: 1px solid #eee;">wireguardvpn</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">megaphone</td><td style="padding: 10px; border: 1px solid #eee;">spotify</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">cbsivideo</td><td style="padding: 10px; border: 1px solid #eee;">cbsvideo</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">pbs.org</td><td style="padding: 10px; border: 1px solid #eee;">pbs</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">dropbox</td><td style="padding: 10px; border: 1px solid #eee;">dropbox</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">hbo</td><td style="padding: 10px; border: 1px solid #eee;">hbomax</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">roku</td><td style="padding: 10px; border: 1px solid #eee;">roku</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">warner</td><td style="padding: 10px; border: 1px solid #eee;">warner</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">spectrum</td><td style="padding: 10px; border: 1px solid #eee;">spectrum</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">xbox</td><td style="padding: 10px; border: 1px solid #eee;">xbox</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">cbsaavideo</td><td style="padding: 10px; border: 1px solid #eee;">cbsvideo</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">msggo</td><td style="padding: 10px; border: 1px solid #eee;">msggo</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">nvidiagrid</td><td style="padding: 10px; border: 1px solid #eee;">nvidiagrid</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">oneclient</td><td style="padding: 10px; border: 1px solid #eee;">microsoftcloud</td></tr>
+    <tr><td style="padding: 10px; border: 1px solid #eee;">skype</td><td style="padding: 10px; border: 1px solid #eee;">msteams</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">youtube</td><td style="padding: 10px; border: 1px solid #eee;">youtube</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">plutotv</td><td style="padding: 10px; border: 1px solid #eee;">plutotv</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">pluto.tv</td><td style="padding: 10px; border: 1px solid #eee;">plutotv</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">reddit</td><td style="padding: 10px; border: 1px solid #eee;">reddit</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">facebook</td><td style="padding: 10px; border: 1px solid #eee;">facebook</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">taobao</td><td style="padding: 10px; border: 1px solid #eee;">taobao</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">shopify</td><td style="padding: 10px; border: 1px solid #eee;">shopify</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">github</td><td style="padding: 10px; border: 1px solid #eee;">github</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">grammarly</td><td style="padding: 10px; border: 1px solid #eee;">grammarly</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">whatsapp</td><td style="padding: 10px; border: 1px solid #eee;">whatsapp</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">nyt</td><td style="padding: 10px; border: 1px solid #eee;">newyorktimes</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">tidal</td><td style="padding: 10px; border: 1px solid #eee;">tidal</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">twitchcdn</td><td style="padding: 10px; border: 1px solid #eee;">twitch</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">twitter</td><td style="padding: 10px; border: 1px solid #eee;">twitter</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">dssott</td><td style="padding: 10px; border: 1px solid #eee;">disneyplus</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">microsoft</td><td style="padding: 10px; border: 1px solid #eee;">microsoft</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">teams.microsoft</td><td style="padding: 10px; border: 1px solid #eee;">msteams</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">adobe</td><td style="padding: 10px; border: 1px solid #eee;">adobe</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">bilivideo</td><td style="padding: 10px; border: 1px solid #eee;">bilivideo</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">line-scdn</td><td style="padding: 10px; border: 1px solid #eee;">line</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">scdn</td><td style="padding: 10px; border: 1px solid #eee;">spotify</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">telegram</td><td style="padding: 10px; border: 1px solid #eee;">telegram</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">qooqlevideo</td><td style="padding: 10px; border: 1px solid #eee;">qooqlevideo</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">wattpad</td><td style="padding: 10px; border: 1px solid #eee;">wattpad</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">riotcdn</td><td style="padding: 10px; border: 1px solid #eee;">riotcdn</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">cbsnews</td><td style="padding: 10px; border: 1px solid #eee;">cbsnews</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">pandora</td><td style="padding: 10px; border: 1px solid #eee;">pandora</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">siriusxm</td><td style="padding: 10px; border: 1px solid #eee;">pandora</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">torproject.org</td><td style="padding: 10px; border: 1px solid #eee;">tor</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">echo</td><td style="padding: 10px; border: 1px solid #eee;">amazonecho</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">office</td><td style="padding: 10px; border: 1px solid #eee;">microsoftcloud</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">stitcher</td><td style="padding: 10px; border: 1px solid #eee;">stitcher</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">fbsbx</td><td style="padding: 10px; border: 1px solid #eee;">facebook</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">redgifs</td><td style="padding: 10px; border: 1px solid #eee;">reddit</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">playstation</td><td style="padding: 10px; border: 1px solid #eee;">playstation</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">wikimedia</td><td style="padding: 10px; border: 1px solid #eee;">wikipedia</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">metmuseum</td><td style="padding: 10px; border: 1px solid #eee;">metmuseum</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">courseworks</td><td style="padding: 10px; border: 1px solid #eee;">courseworks</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">wordpress</td><td style="padding: 10px; border: 1px solid #eee;">wordpress</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">discord</td><td style="padding: 10px; border: 1px solid #eee;">discord</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">zillow</td><td style="padding: 10px; border: 1px solid #eee;">zillow</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">windows</td><td style="padding: 10px; border: 1px solid #eee;">microsoft</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">onlyfans</td><td style="padding: 10px; border: 1px solid #eee;">onlyfans</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">tumblr</td><td style="padding: 10px; border: 1px solid #eee;">tumblr</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">xvideos</td><td style="padding: 10px; border: 1px solid #eee;">xvideos</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">llnwd</td><td style="padding: 10px; border: 1px solid #eee;">limelight</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">xhcdn</td><td style="padding: 10px; border: 1px solid #eee;">xhcdn</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">igcdn</td><td style="padding: 10px; border: 1px solid #eee;">instagram</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">wechat</td><td style="padding: 10px; border: 1px solid #eee;">wechat</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">phncdn</td><td style="padding: 10px; border: 1px solid #eee;">phcdn</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">bumble.com</td><td style="padding: 10px; border: 1px solid #eee;">bumble</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">edgesuite</td><td style="padding: 10px; border: 1px solid #eee;">microsoftcloud</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">tinder</td><td style="padding: 10px; border: 1px solid #eee;">tinder</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">pv-cdn</td><td style="padding: 10px; border: 1px solid #eee;">primevideo</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">gaijin</td><td style="padding: 10px; border: 1px solid #eee;">gaijin</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">wetransfer</td><td style="padding: 10px; border: 1px solid #eee;">wetransfer</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">eporner</td><td style="padding: 10px; border: 1px solid #eee;">eporner</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">wsj</td><td style="padding: 10px; border: 1px solid #eee;">wallstreetjournal</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">mushroomtrack</td><td style="padding: 10px; border: 1px solid #eee;">mushroomtrack</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">comcast</td><td style="padding: 10px; border: 1px solid #eee;">comcast</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">epicgames</td><td style="padding: 10px; border: 1px solid #eee;">epicgames</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">pinterest</td><td style="padding: 10px; border: 1px solid #eee;">pinterest</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">linkedin</td><td style="padding: 10px; border: 1px solid #eee;">linkedin</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">pornez</td><td style="padding: 10px; border: 1px solid #eee;">pornez</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">squarespace</td><td style="padding: 10px; border: 1px solid #eee;">squarespace</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">paramountplus</td><td style="padding: 10px; border: 1px solid #eee;">paramountplus</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">mmcdn</td><td style="padding: 10px; border: 1px solid #eee;">mmcdn</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">gopuff</td><td style="padding: 10px; border: 1px solid #eee;">gopuff</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">photos.google</td><td style="padding: 10px; border: 1px solid #eee;">googlephotos</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">messages.google</td><td style="padding: 10px; border: 1px solid #eee;">googlemessages</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">video.google</td><td style="padding: 10px; border: 1px solid #eee;">youtube</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">groups.google</td><td style="padding: 10px; border: 1px solid #eee;">googlegroups</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">play.google</td><td style="padding: 10px; border: 1px solid #eee;">googleplay</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">drive.google</td><td style="padding: 10px; border: 1px solid #eee;">googledrive</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">calendar.google</td><td style="padding: 10px; border: 1px solid #eee;">googlecalendar</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">spreadsheets.google</td><td style="padding: 10px; border: 1px solid #eee;">googledrive</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">chat.google</td><td style="padding: 10px; border: 1px solid #eee;">googlemessages</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">googleusercontent</td><td style="padding: 10px; border: 1px solid #eee;">googleusercontent</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">webex</td><td style="padding: 10px; border: 1px solid #eee;">webex</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">cisco</td><td style="padding: 10px; border: 1px solid #eee;">cisco</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">foxitsoftware</td><td style="padding: 10px; border: 1px solid #eee;">foxitsoftware</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">campusgroups</td><td style="padding: 10px; border: 1px solid #eee;">campusgroups</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">conda</td><td style="padding: 10px; border: 1px solid #eee;">conda</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">columbia</td><td style="padding: 10px; border: 1px solid #eee;">columbia</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">eerospeedtests</td><td style="padding: 10px; border: 1px solid #eee;">eerospeedtests</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">dailymotion</td><td style="padding: 10px; border: 1px solid #eee;">dailymotion</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">samsung</td><td style="padding: 10px; border: 1px solid #eee;">samsung</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">notion</td><td style="padding: 10px; border: 1px solid #eee;">notion</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">sndcdn</td><td style="padding: 10px; border: 1px solid #eee;">soundcloud</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">soundcloud</td><td style="padding: 10px; border: 1px solid #eee;">soundcloud</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">groupme</td><td style="padding: 10px; border: 1px solid #eee;">groupme</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">mail.google</td><td style="padding: 10px; border: 1px solid #eee;">gmail</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">docs.google</td><td style="padding: 10px; border: 1px solid #eee;">gdocs</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">nintendo</td><td style="padding: 10px; border: 1px solid #eee;">nintendo</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">ubisoft</td><td style="padding: 10px; border: 1px solid #eee;">ubisoft</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">showtime</td><td style="padding: 10px; border: 1px solid #eee;">showtime</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">crunchyroll</td><td style="padding: 10px; border: 1px solid #eee;">crunchyroll</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">baddiehub</td><td style="padding: 10px; border: 1px solid #eee;">baddiehub</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">dssedge</td><td style="padding: 10px; border: 1px solid #eee;">disneyplus</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">sc‑cdn</td><td style="padding: 10px; border: 1px solid #eee;">snapchat</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">onedrive</td><td style="padding: 10px; border: 1px solid #eee;">microsoftcloud</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">live‑video</td><td style="padding: 10px; border: 1px solid #eee;">twitch</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">aiv‑cdn</td><td style="padding: 10px; border: 1px solid #eee;">primevideo</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">olemovienews</td><td style="padding: 10px; border: 1px solid #eee;">olemovienews</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">afreecatv</td><td style="padding: 10px; border: 1px solid #eee;">afreecatv</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">cdn‑videos.lpsg</td><td style="padding: 10px; border: 1px solid #eee;">lpsg</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">v.vrv</td><td style="padding: 10px; border: 1px solid #eee;">crunchyroll</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">fubo</td><td style="padding: 10px; border: 1px solid #eee;">fubo</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">bittorrent</td><td style="padding: 10px; border: 1px solid #eee;">bittorrent</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">publicbt</td><td style="padding: 10px; border: 1px solid #eee;">bittorrent</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">android.googleapis</td><td style="padding: 10px; border: 1px solid #eee;">playstore</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">torrents</td><td style="padding: 10px; border: 1px solid #eee;">bittorrent</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">watchliveformula1</td><td style="padding: 10px; border: 1px solid #eee;">watchliveformula1</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">storage.live</td><td style="padding: 10px; border: 1px solid #eee;">microsoftcloud</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">ott‑video‑cf.formula1</td><td style="padding: 10px; border: 1px solid #eee;">ott‑video‑cf.formula1</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">kakao</td><td style="padding: 10px; border: 1px solid #eee;">kakaotalk</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">cwtv</td><td style="padding: 10px; border: 1px solid #eee;">cartoonnetwork</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">vimeo</td><td style="padding: 10px; border: 1px solid #eee;">vimeo</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">disney</td><td style="padding: 10px; border: 1px solid #eee;">disneyplus</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">licdn</td><td style="padding: 10px; border: 1px solid #eee;">linkedin</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">kanopy</td><td style="padding: 10px; border: 1px solid #eee;">kanopy</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">bdsmlr</td><td style="padding: 10px; border: 1px solid #eee;">bdsmlr</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">sharepoint</td><td style="padding: 10px; border: 1px solid #eee;">microsoftcloud</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">tubi</td><td style="padding: 10px; border: 1px solid #eee;">tubi</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">n.shifen</td><td style="padding: 10px; border: 1px solid #eee;">baidu</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">primevideo</td><td style="padding: 10px; border: 1px solid #eee;">primevideo</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">amazonvideo</td><td style="padding: 10px; border: 1px solid #eee;">primevideo</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">video.a2z</td><td style="padding: 10px; border: 1px solid #eee;">primevideo</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">clients.google.com</td><td style="padding: 10px; border: 1px solid #eee;">playstore</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">clients6.google.com</td><td style="padding: 10px; border: 1px solid #eee;">playstore</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">snapchat</td><td style="padding: 10px; border: 1px solid #eee;">snapchat</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">inbox.google.com</td><td style="padding: 10px; border: 1px solid #eee;">gmail</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">meet.google</td><td style="padding: 10px; border: 1px solid #eee;">googlemeet</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">netflix</td><td style="padding: 10px; border: 1px solid #eee;">netflix</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">hoyoverse</td><td style="padding: 10px; border: 1px solid #eee;">hoyoverse</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">hinge</td><td style="padding: 10px; border: 1px solid #eee;">hinge</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">theleague</td><td style="padding: 10px; border: 1px solid #eee;">theleague</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">porntn</td><td style="padding: 10px; border: 1px solid #eee;">porntn</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">xnxx-cdn</td><td style="padding: 10px; border: 1px solid #eee;">xnxx-cdn</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">patreon</td><td style="padding: 10px; border: 1px solid #eee;">patreon</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">mcafee</td><td style="padding: 10px; border: 1px solid #eee;">mcafee</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">cloudfront</td><td style="padding: 10px; border: 1px solid #eee;">primevideo</td></tr>
+<tr><td style="padding: 10px; border: 1px solid #eee;">max.com</td><td style="padding: 10px; border: 1px solid #eee;">hbomax</td></tr>
+
+</tbody>
+</table>
+
+            <h2>Unsupervised Domain Clustering:</h2>
+            <p>For domain pairs not covered by keywords, we use an unsupervised learning approach to identify clusters of related ⟨DNS, SNI⟩ pairs based on temporal correlation—how often they appear near each other in time. We apply the Louvain clustering algorithm and assign each cluster to the service that dominates its traffic. If a service makes up ≥ 60% of a cluster's traffic, we label the entire cluster accordingly. This adds another 6.4% of traffic to our service mapping.</p>
+
+<h2>Transport-Level Heuristics:</h2>
+<p>For flows with no DNS or SNI data, we apply manual rules based on known transport-layer signatures (e.g., destination AS + port + protocol). Traffic on ports 16393–16402 or ports 3478–3497 from ASN 714 was classified as FaceTime. Port 51820 was used to identify WireGuard VPN, while port 3480 traffic from Microsoft's ASN (8075) indicated Microsoft Teams usage. Google Meet was detected via port 3478 traffic from Google's ASN (15169). Twitch traffic was identified using its ASN (46489), and Facebook Messenger by matching ASN 32934 with port 3478. We also labeled traffic from Ubisoft (ASN 49544) and PlayStation (ASN 33353). Finally, BitTorrent traffic was inferred from activity on ports 6881–6889.</p>
+
+
+                
+                
+                </p>
         </div>
-        
+    <div class = "footer">
+            
+        </div>
     </div>
 </body>
 </html>

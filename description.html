@@ -6,7 +6,7 @@
     <title>Columbia Residential Traffic Analysis</title>
     <link rel="stylesheet" href="header_css.css">
     <link rel="stylesheet" href="description.css">
-
+    <link rel="stylesheet" href="form.css">
 </head>
 <body>
 <!--
@@ -27,29 +27,96 @@ Data Description:
         </div>
         <div class = "nav-bar">
             <div class = "middle-nav-bar">
-                <a href="./about.html">About</a>
-                <a href="./description.html">Data Description</a>
-                <a href="./results.html">Latest Results</a>
-                <a href="./previous.html">Previous Results</a>
-                <a href="./longitudinal.html">Longitudinal Results</a>
-                <a href="./case.html">Case Studies (or blog posts) if further studies intended</a>
+                <a href="./index.html">About</a>
+                <a href="./about.html">Methodology</a>
+                <a href="./description.html">Data Description and Sharing</a>
             </div>
         </div>
 
     </header>
 
     <div class = "description-page">
-        <div class = "methodology">
-            <h1 class = "methodology-header">Data Collection Methodology</h1>
-            <p class = "methodology-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id tempora maxime commodi. Architecto laboriosam repellat rerum asperiores ab nobis? Vitae fugit reprehenderit provident ducimus delectus ex quos? Amet, earum et.</p>
-            <img src="./figures/data-collect-methodology.png" alt="" class = "methodology-figure">
-        </div>
         <div class = "description">
             <h1 class = "description-header"> Data Description </h1>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti, exercitationem est adipisci quod optio nostrum sed maiores quis, itaque aperiam molestiae ea maxime! Enim cumque dolore expedita voluptates temporibus illo!</p>
+            <p>On the server side, our system captures network traffic using Gulp (in pcap format) and extracts key fields with tshark, including TLS Server Name Indication (SNI) and DNS A records. For domain names, we retain only the last three components (e.g., from a.b.c.d, we keep b.c.d) to preserve relevant information while reducing granularity.</p>
+
+            <p>We store the extracted fields in CSV files and then anonymize sensitive data:</p>
+
+            <ul class = "outside"><li>IP Addresses:</li>
+
+            <ul class = "inside"><li>External IPs (outside the university): kept as-is.</li>
+
+            <li>IPs (within student housing): fully anonymized using the Crypto-PAn scheme. However, we retain subnet-level information to associate traffic with specific buildings and units—without revealing exact IPs.</li>
+
+            <li>Non-residential university IPs: reduced to their university subnets.</li></ul>
+
+            <li>MAC Addresses: We anonymize all except the Vendor ID, which is preserved.</li></ul>
+
+            Payload data beyond Layer 4 is removed using DagScrubber to further protect privacy.
+
+            Once anonymized, the pipeline uploads the processed pcap and CSV files to the cloud and securely deletes the original raw data.</p>
             <div class = "figures">
                 <div class = "metadata">
-                    <img src="./figures/metadata.png" alt="" class = "metadata-fig">
+                    <h2>Application traffic metadata</h2>
+                    <table border="1">
+                    <tr>
+                        <th>Frame number</th>
+                        <th>Frame Time</th>
+                        <th>Protocol</th>
+                        <th>Source IP</th>
+                        <th>Destination IP</th>
+                        <th>Source MAC Organization Unique Identifier</th>
+                        <th>Destination MAC Organization Unique Identifier</th>
+                        <th>TLS Handshake Extensions Server Name</th>
+                    </tr>
+                   <tr>
+                    <td height = '20px'></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                   </tr>
+                </table>
+                </div>
+                <div>
+                    <h2>DNS traffic metadata</h2>
+                    <table border="1">
+                    <tr>
+                        <th>Frame number</th>
+                        <th>Frame Time</th>
+                        <th>Protocol</th>
+                        <th>Source IP</th>
+                        <th>Destination IP</th>
+                        <th>Source MAC Organization Unique Identifier</th>
+                        <th>Destination MAC Organization Unique Identifier</th>
+                        <th>DNS A</th>
+                        <th>DNS CNAME</th>
+                        <th>DNS Response TTL</th>
+                        <th>DNS Query Name</th>
+                        <th>DNS Query Type</th>
+                        <th>DNS Flag Response</th>
+
+                    </tr>
+                   <tr>
+                    <td height = '20px'></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                    </tr>
+                </table>
                 </div>
             </div>
         </div>
@@ -57,25 +124,46 @@ Data Description:
             <h1 class = "access-condition-header">
                 Access Request Terms
             </h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nemo qui temporibus voluptates odio, odit at consectetur suscipit veniam, totam quisquam, ea incidunt vero accusamus unde quaerat id quam fugit!</p>
+            <p>We are authorized by Columbia University’s IT and Institutional Review Board (IRB) to share our datasets with external researchers.</p>
+
+            <p>To ensure user privacy and prevent any risk of de-anonymization, we will share the dataset only with researchers who:</p>
+
+            <ul class = "outside"><li>Have IRB approval or exemption from their own institution, and</li>
+
+            <li>Agree to our Acceptable Use Policy (see Appendix A.1.2 for details)</li></ul>
             
         </div>
         <div class = "access-request">
             <h1 class = "access-request-header">
                 Access Request
             </h1>
-            <form action="">
-                <label for="">Name</label>
-                <input type="text" name="" id="" placeholder="Name">
-                <label for="">Name</label>
-                <input type="text" name="" id="" placeholder="Name">
-                <label for="">Name</label>
-                <input type="text" name="" id="" placeholder="Name">
-                <label for="">Name</label>
-                <input type="text" name="" id="" placeholder="Name">
-                <label for="">Name</label>
-                <input type="text" name="" id="" placeholder="Name">
-                <button type="submit">Submit</button>
+            <form action="https://formspree.io/f/xvgrzljj" method="POST">
+            <label>
+                Full Name:
+                <input type="text" name="name" required>
+            </label><br><br>
+            
+            <label>
+                Email:
+                <input type="email" name="email" required>
+            </label><br><br>
+
+            <label>
+                Institution:
+                <textarea name="institution" required></textarea>
+            </label><br><br>
+
+            <label>
+                Affiliation:
+                <textarea name="affiliation" required></textarea>
+            </label><br><br>
+
+            <label>
+                Brief Description of Your Research:
+                <textarea name="message" required></textarea>
+            </label><br><br>
+
+            <button type="submit">Send</button>
             </form>
         </div>
     </div>
