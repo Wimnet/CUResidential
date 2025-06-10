@@ -17,28 +17,31 @@
             <div class = "middle-nav-bar">
                 <a href="./index.html">About</a>
                 <a href="./about.html">Methodology</a>
-                <a href="./description.html">Data Description</a>
+                <a href="./description.html">Data Description and Sharing</a>
+                <a href="./contact.html">Contact</a>
             </div>
         </div>
     </header>
  
     <div class = "index">
         <div class = "description parent">
-            <p class = "description-text">This project presents a new, openly shared dataset capturing real-world Internet traffic from ~1000 residential units housing university affiliates. By analyzing this unique data, we uncover how services are delivered to homes—highlighting patterns like high peer-to-peer usage, mismatches between server proximity and traffic routing, and underutilized third-party CDNs. Our findings aim to deepen understanding of modern residential Internet usage and infrastructure.</p>
-            <p class = "description-text"><a href="https://dl.acm.org/doi/10.1145/3727133"><i class="fa fa-file-pdf-o" style="font-size:20px;color:red"></i> Internet Service Usage and Delivery As Seen From a Residential Network</a></p>
+            <p class = "description-text">This project presents a new, <a href = "./description.html">sharable dataset</a> capturing real-world Internet traffic from ~1500 residential units housing university affiliates. By analyzing this unique data, we uncover how services are delivered to homes—highlighting patterns like high peer-to-peer usage, mismatches between server proximity and traffic routing, and underutilized third-party CDNs. Our findings aim to deepen understanding of modern residential Internet usage and infrastructure.</p>
+            <p class = "description-text"><a href="https://doi.org/10.1145/3727133"><i class="fa fa-file-pdf-o" style="font-size:20px;color:red"></i></a> Shuyue Yu, Thomas Koch, Ilgar Mammadov, Hangpu Cao, Gil Zussman, and Ethan Katz-Bassett. 2025. Internet Service Usage and Delivery As Seen From a Residential Network. Proceedings of the ACM on Measurement and Analysis of Computing Systems 9, 2, Article 41 (June 2025), 30 pages.<a href="https://doi.org/10.1145/3727133"> https://doi.org/10.1145/3727133</a></p>
+            <p class = "description-text"><a href="https://doi.org/10.1145/3726854.3727327"><i class="fa fa-file-pdf-o" style="font-size:20px;color:red"></i></a> Shuyue Yu, Thomas Koch, Ilgar Mammadov, Hangpu Cao, Gil Zussman, and Ethan Katz-Bassett. 2025. Internet Service Usage and Delivery As Seen From a Residential Network. In Abstracts of the 2025 ACM SIGMETRICS International Conference on Measurement and Modeling of Computer Systems<a href="https://doi.org/10.1145/3726854.3727327"> https://doi.org/10.1145/3727133</a></p>
+            
         </div>
         <div class = "latest-results">
-            <h1 class = "results-header"> Latest Results </h1>
+            <h1 class = "results-header"> Results </h1>
             <h2 class = "remote-fig-description"> Remote Host Categories: Flows, Traffic & Duration </h2>
             <div class = 'fig-div'>
                 <img src="./figures/fig3.png" alt="" class = "fig3 fig">
-                <p>We classify the remote hosts accessed by our users as servers, P2P users, and unauthorized devices. While servers account for 93% of traffic, P2P hosts—77% of remote hosts—contribute only 5% of traffic but 47% of total flow duration, reflecting usage like file sharing and video calls. Unauthorized devices are frequent but mostly generate scanning traffic.</p>
+                <p>We classify the remote hosts accessed by our users as servers, P2P users, and unauthorized devices. While servers account for 93% of traffic, P2P hosts—77% of remote hosts—contribute only 5% of traffic but 47% of total flow duration, reflecting usage like file sharing and video calls. Unauthorized devices are observed frequently, but they mostly generate scanning traffic.</p>
             </div>
 
             <h2 class = "fig-description"> Top Organizations: Domains Hosted vs. Traffic Served </h2>
             <div class = "fig-div">
                 <img src="./figures/fig4.png" alt="" class = "fig4 fig">
-                <p>We analyzed which organizations serve traffic to our users and found that a few major players dominate. While CDNs like Cloudflare host many domains (e.g., 19%), they serve relatively little traffic (only 2%), suggesting those sites are smaller or less frequently visited. In contrast, Google, Amazon, and video-focused CDNs like Akamai and Fastly contribute significantly more traffic volume.</p>
+                <p>We analyzed which organizations serve traffic to our users and found that a few major players dominate. While Cloudflare hosts 19% of domains, it only serves 2% of traffic, suggesting those sites are smaller or less frequently visited. In contrast, Google, Amazon, and video-focused CDNs like Akamai and Fastly contribute significantly more traffic volume.</p>
             </div>
 
             <h2 class = "fig-description"> Organizations on the Path Between Users and Services </h2>
