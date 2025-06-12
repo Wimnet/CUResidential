@@ -67,3 +67,8 @@ a {
   display: flex;
   justify-content: center;
 }
+.inside-footer {
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+}
