@@ -14,14 +14,29 @@ header {
   align-items: center;
 }
 
+a {
+  text-decoration: none;
+}
+
 .logo-img {
-  width: 20%;
+  width: 30%;
   height: 80%;
+  margin-top: 10px;
+}
+.snl {
+  font-size: 20px;
+  height: 100%;
+  padding-top: 23px;
+}
+
+.logo-wimnet {
+  width: 70%;
 }
 
 .logo {
   display: flex;
-  justify-content: center;
+  width: 70%;
+  justify-content: space-around;
   margin-bottom: 20px;
 }
 
@@ -42,4 +57,13 @@ header {
 .middle-nav-bar a {
   text-decoration: none;
   color: black;
+}
+
+.footer {
+  background-color: #f8f9fa;
+  margin-top: 30px;
+  width: 100%;
+  height: 25px;
+  display: flex;
+  justify-content: center;
 }
