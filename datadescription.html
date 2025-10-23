@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Columbia Residential Traffic Analysis</title>
     <link rel="stylesheet" href="header_css.css">
-    <link rel="stylesheet" href="description.css">
+    <link rel="stylesheet" href="datadescription.css">
     <link rel="stylesheet" href="form.css">
 </head>
 <body>
@@ -17,9 +17,10 @@
         </div>
         <div class = "nav-bar">
             <div class = "middle-nav-bar">
-                <a href="./index.html">About</a>
-                <a href="./about.html">Methodology</a>
-                <a href="./description.html">Data Description and Sharing</a>
+                <a href="./index.html">Index</a>
+                <a href="./datadescription.html">Data Description and Sharing</a>
+                <a href="./methodology.html">Methodology</a>
+                <a href="./findings.html">Findings</a>
                 <a href="./contact.html">Contact</a>
             </div>
         </div>
@@ -28,39 +29,51 @@
     <div class = "description-page">
         <div class = "description">
             <h1 class = "description-header"> Data Description </h1>
-            <p>On the server side, our system captures network traffic using Gulp (in pcap format) and extracts key fields with tshark, including TLS Server Name Indication (SNI) and DNS A records. For domain names, we retain only the last three components (e.g., from a.b.c.d, we keep b.c.d) to preserve relevant information while reducing granularity.</p>
-
-            <p>We store the extracted fields in CSV files and then anonymize sensitive data:</p>
+            <p>Our pipeline <b>(upgraded in May 2025)</b> is built around an Intel Tofino programmable switch, which runs a scalable online network traffic anonymization system (<a href="https://sites.cs.ucsb.edu/~arpitgupta/pdfs/ontas.pdf">ONTAS [Kim et al., SIGCOMM 2019 Workshop on Network Meets AI & ML]</a>). This system efficiently anonymizes IP and MAC addresses and flexibly removes packet payload depending on protocol, while preserving key information such as DNS A records and TLS Server Name Indication (SNI).</p>
 
             <ul class = "outside"><li>IP Addresses:</li>
 
-            <ul class = "inside"><li>External IP addresses (outside the university): kept as-is.</li>
+            <ul class = "inside"><li>External IP addresses (outside the university): keep as is</li>
 
-            <li>IP addresses (within student housing): fully anonymized using the Crypto-PAn scheme. However, we retain subnet-level information to associate traffic with specific buildings and units—without revealing exact IP addresses.</li>
+            <li>IP addresses (of Columbia University): hash in a prefix-preserving manner for the subnets of the residential buildings and Columbia's campus network</li></ul>
 
-            <li>Non-residential university IP addresses: reduced to their university subnets.</li></ul>
+            <li>MAC Addresses: hash in a prefix-preserving manner to only preserve the Vendor ID</li>
 
-            <li>MAC Addresses: We anonymize all except the Vendor ID, which is preserved.</li></ul>
+            <li>Payload after layer 4 is discarded</li>
 
-            Payload data beyond Layer 4 is removed using DagScrubber to further protect privacy.
+            <li>Domains (DNS / SNI): only keeps the last three suffixes (i.e., for domain a.b.c.d, we only keep b.c.d)</li></ul>
 
-            Once anonymized, the pipeline uploads the processed pcap and CSV files to the cloud and securely deletes the original raw data.</p>
             <div class = "figures">
                 <div class = "metadata">
-                    <h2>Application traffic metadata</h2>
+                    <h2>Packet Traces</h2>
+                    We provide access to anonymized, unsampled packet traces (.pcap), allowing you to extract header fields as needed. 
+                </div>
+
+                <div class = "metadata">
+                    <h2>Flow associated with domains and services</h2>
+                    To reduce the burden of large-scale processing, we provide flows (5-tuples) associated with DNS domains and TLS SNIs, as well as services identified via domain keywords. Metadata example: <br><br>
+
                     <table border="1">
                     <tr>
-                        <th>Frame number</th>
-                        <th>Frame Time</th>
                         <th>Protocol</th>
-                        <th>Source IP</th>
-                        <th>Destination IP</th>
-                        <th>Source MAC Organization Unique Identifier</th>
-                        <th>Destination MAC Organization Unique Identifier</th>
-                        <th>TLS Handshake Extensions Server Name</th>
+                        <th>Remote IP</th>
+                        <th>Anonymized residential IP</th>
+                        <th>Remote-End Port</th>
+                        <th>Residential-End Port</th>
+                        <th>Flow Start Time</th>
+                        <th>Flow End Time</th>
+                        <th>Inbound Bytes</th>
+                        <th>Outbound Bytes</th>
+                        <th>DNS domain (if a mapping exists)</th>
+                        <th>TLS Handshake Extensions Server Name (if a mapping exists)</th>
+                        <th>Service</th>
                     </tr>
                    <tr>
                     <td height = '20px'></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -73,9 +86,9 @@
                 </div>
                 <div>
                     <h2>DNS traffic metadata</h2>
+                    We also provide CSV files containing useful information extracted from DNS packets. Metadata example: <br><br>
                     <table border="1">
                     <tr>
-                        <th>Frame number</th>
                         <th>Frame Time</th>
                         <th>Protocol</th>
                         <th>Source IP</th>
@@ -103,7 +116,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
 
                     </tr>
                 </table>
@@ -116,19 +128,12 @@
             </h1>
             <p>We are authorized by Columbia University’s IT and Institutional Review Board (IRB) to share our datasets with external researchers.</p>
 
-            <p>To ensure user privacy and prevent any risk of de-anonymization, we will share the dataset only with researchers who:</p>
+            <p>To ensure user privacy and prevent any risk of de-anonymization, we will share the dataset only with researchers who</p>
 
-            <ul class = "outside"><li>Have IRB approval or exemption from their own institution, and</li>
+            <ul class = "outside"><li>have IRB approval or exemption from their own institution, and</li>
 
-            <li>Agree to our Acceptable Use Policy (see Appendix A.1.2 for details)</li></ul>
+            <li>agree to our <a href="https://docs.google.com/document/d/1KGgUU0nFO82xOnsFiaBV2s1hjM_HQur4fkDtA7fmVsg/edit?usp=sharing">Acceptable Use Policy</a></li></ul>
             
-        </div>
-
-        <div class = "access-condition">
-            <h1 class = "access-condition-header">
-                Acceptable Use Policy
-            </h1>
-            <p>This is a placeholder for the Acceptable Use Policy. Details regarding permitted and restricted uses of the dataset will be provided here. Users are expected to follow ethical guidelines and comply with all applicable laws and institutional policies. For questions, please contact sy3011[at]columbia[dot]edu.</p>
         </div>
 
         <div class = "access-request">

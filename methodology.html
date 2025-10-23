@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Columbia Residential Traffic Analysis</title>
     <link rel="stylesheet" href="header_css.css">
-    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="methodology.css">
 </head>
 <body>
     <header>
@@ -16,9 +16,10 @@
         </div>
         <div class = "nav-bar">
             <div class = "middle-nav-bar">
-                <a href="./index.html">About</a>
-                <a href="./about.html">Methodology</a>
-                <a href="./description.html">Data Description and Sharing</a>
+                <a href="./index.html">Index</a>
+                <a href="./datadescription.html">Data Description and Sharing</a>
+                <a href="./methodology.html">Methodology</a>
+                <a href="./findings.html">Findings</a>
                 <a href="./contact.html">Contact</a>
             </div>
         </div>
@@ -29,9 +30,13 @@
             <div class = "data-collection">
             <h1 class = "methodology-header">Data collection and anonymization pipeline</h1>
             <div class = 'fig-div'>
-                <img src="./figures/fig14.png" alt="" class = "fig3 fig">
+                <img src="./figures/topology-p4.png" alt="" class = "fig3 fig">
             </div>
-            <p class = "methodology-text">This diagram shows the layout of our residential network. Each apartment connects to a building switch, which aggregates to a central switch that links to the Internet via Columbia’s campus network. We mirror all incoming and outgoing traffic over dedicated fiber to a nearby lab server. Our custom pipeline captures and processes IPv4 traffic only, extracting fields like DNS and TLS data, anonymizing sensitive information (e.g., MAC/IP addresses), and discarding payloads beyond layer 4. DNS traffic is recorded continuously for six hours, with raw traffic sampled during the final hour. We rotate anonymization keys every cycle to protect privacy and collect four nonconsecutive hours of data per day. In early 2024, our dataset grew to 943 apartments, generating an average of 305GB of traffic and 217 million packets per hour. All collection was approved by Columbia IT and IRB-reviewed.</p>
+            <p class = "methodology-text">This figures shows our data collection pipeline and the network topology. Shared graduate student apartments have one Ethernet port per bedroom, while other apartments have one Ethernet port per apartment. The ports connect to a switch in the residential building, which connects to an aggregation switch and then to the Internet via the campus network and a few providers. The aggregation switch mirrors both traffic to and from our residential buildings over 2x10Gbps dedicated fiber to a server in our nearby lab. Since Columbia has not deployed IPv6 in these buildings, we only study IPv4 traffic. <br>
+                
+            Our data collection/anonymization pipeline followed established practices, was approved by Columbia’s IT, and received formal review and was declared exempt by our Institutional Review Board (IRB) as it is <i>not human-subjects research</i>. It anonymizes privacy-sensitive fields and discards personally identifiable information. We do not identify any human or study network usage below the level of buildings.
+
+</p>
             </div>
             <h1 class = "methodology-header">Mapping flows to services</h1>
             

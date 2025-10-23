@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Columbia Residential Traffic Analysis</title>
+    <link rel="stylesheet" href="header_css.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <div class = "logo">
+            <a href="https://wimnet.ee.columbia.edu/"><img src="./figures/wimnet.png" alt="" class = "logo-wimnet"></a>
+            <img src="./figures/logo.png" alt="" class = "logo-img">
+            <a href="https://www.columbia.edu/~ebk2141/"><img src="./figures/snl.png" alt="" class = "snl-img"></a>
+        </div>
+        <div class = "nav-bar">
+            <div class = "middle-nav-bar">
+                <a href="./index.html">Index</a>
+                <a href="./datadescription.html">Data Description and Sharing</a>
+                <a href="./methodology.html">Methodology</a>
+                <a href="./findings.html">Findings</a>
+                <a href="./contact.html">Contact</a>
+            </div>
+        </div>
+    </header>
+ 
+    <div class = "index">
+        <div class = "latest-results">
+            <h1 class = "results-header"> Findings </h1>
+            <p>Here we present some interesting findings. More insights can be found in <a href="./index.html">our publications</a>.</p><br>
+
+            <h3 class = "remote-fig-description"> The popularity of remote host categories differs greatly by traffic volume, flow count, flow duration, and DNS query count. P2P activity is notable, likely caused by both file sharing and videotelephony.</h3>
+            <div class = 'fig-div'>
+                <img src="./figures/fig3.png" alt="" class = "fig3 fig">
+                <p>We classify the remote hosts accessed by our users as servers, P2P users, and unauthorized devices. While servers account for 93% of traffic, P2P hosts—77% of remote hosts—contribute only 5% of traffic but 47% of total flow duration, reflecting usage like file sharing and video calls. Unauthorized devices are observed frequently, accounting for many scanning flows.</p>
+            </div>
+
+            <h3 class = "fig-description"> Third-party CDNs (e.g., Cloudflare) can host many sites but serve low traffic volumes </h3>
+            <div class = "fig-div">
+                <img src="./figures/fig4.png" alt="" class = "fig4 fig">
+                <p>We analyzed which organizations serve traffic to our users and found that a few major providers dominate. While Cloudflare hosts 19% of domains, it only serves 2% of traffic, suggesting those sites are smaller or less frequently visited. In contrast, Google, Amazon, and video-focused CDNs like Akamai and Fastly contribute significantly more traffic volume.</p>
+            </div>
+
+            <div class = "fig-div">
+                <img src="./figures/fig13.png" alt="" class = "fig4 fig" style="width:50%;">
+                <p>This Sankey diagram also demonstrates how traffic flows from our residential users to major service providers. For better visualization, our Sankey diagram only depicts Columbia providers and the organizations of remote hosts that account for more than 1.2% of traffic. Amazon directly peers with the university and carries 9% of user traffic. Netflix accounts for 6%, served through off-net caches hosted by NYSERNet, a regional research network. All other traffic goes through one of Columbia's providers, with much of it from/to popular clouds, CDNs, and content providers.</p>
+            </div>
+
+            <h3 class = "fig-description"> Some popular services (such as FaceTime, Zoom, Ubisoft) are often served from at least 10ms away from the closest remote hosts.</h3>
+            <div class = 'fig-div'>
+                <img src="./figures/fig7.png" alt="" class = "fig7 fig" style="width:80%;">
+                <p>For each of the 100 highest volume services, we calculate the gap between the <i>propagation delay</i> (and <i>distance</i>) to its nearest server and the overall <i>propagation delay</i> (and <i>distance</i>) with each of its servers weighted by the bytes delivered and received. In this figure, we plot the CCDF of services with respect to these gaps. We find that 19% of these services have a latency gap of at least 10 ms; 11% have a distance gap of at least 10ms, meaning that their traffic travels an additional 1000 km each direction on average, compared to the closest remote host. This finding suggests that although deployments are widespread and mappings can be near optimal, a noticeable volume of traffic still flows to/from distant remote hosts. These examples indicate that the services may prioritize other measures over serving users locally or be limited by other factors.</p>
+            </div>
+
+            <h3 class = "fig-description"> Relative service popularity depends considerably on metrics (i.e., traffic, flows, flow duration, DNS responses). Even within affiliates of a single university, service traffic usage can vary considerably across demographics.</h3>
+            <div class = 'fig-div'>
+                <img src="./figures/fig9.png" alt="" class = "fig9 fig">
+                <p>We evaluate service popularity using four metrics: traffic volume, flow count, flow duration, and DNS activity. These metrics often highlight different top services—for instance, iCloud generates less traffic than YouTube but has three times the flow duration. We also find notable usage differences between resident types: graduate students favor YouTube, Hulu, and Instagram, while faculty and families use more Netflix, iCloud, and Playstation. These patterns show that service usage varies both by measurement method and user demographic, even within a single university community.</p>
+            </div>
+
+        </div>
+        <div class = "footer">
+            <div class = "inside-footer">
+                <p>&copy; 2025 Columbia University</p> 
+                <p>This work is supported in part by NSF grants OAC-2029295 and CNS-2212479</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
