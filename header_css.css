@@ -79,18 +79,3 @@ a {
   align-items: center;
   flex-direction: column;
 }
-
-/* 📱 Mobile view: stack vertically */
-@media (max-width: 3000) {
-  .middle-nav-bar {
-    flex-direction: row;       /* keep it horizontal */
-    flex-wrap: wrap;           /* allow items to wrap to next line if needed */
-    justify-content: center;   /* center items if wrapping */
-    gap: 0.5rem;               /* slightly tighter spacing */
-  }
-
-  .middle-nav-bar a {
-    font-size: 0.95rem;        /* slightly smaller text */
-    padding: 6px 10px;         /* reduce padding */
-  }
-}
