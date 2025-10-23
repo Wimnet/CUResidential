@@ -43,9 +43,10 @@
             <p class = "methodology-text">We associate each flow with a service (e.g., Netflix, YouTube) using a combination of domain keyword matching, unsupervised clustering, and transport-layer heuristics:
 
                 <h2>Keyword-Based Mapping:</h2>
-                <p>We match ⟨DNS, SNI⟩ domain pairs against a curated list of ~200 service-related keywords (e.g., domains containing "nflx" are mapped to Netflix). This rule-based mapping, built upon the public nDPI keyword set, accounts for 73% of traffic by volume. The list of keywords is provided below:</p>
-                <table style="width:100%; border-collapse: collapse; font-family: Arial, sans-serif; margin: 20px 0;">
-                    <thead style="background-color: #f2f2f2;">
+                <p>We match ⟨DNS, SNI⟩ domain pairs against a curated list of ~200 service-related keywords (e.g., domains containing "nflx" are mapped to Netflix). This rule-based mapping, built upon the public nDPI keyword set, accounts for 73% of traffic by volume. The list of keywords is provided below:</p><br>
+                <div class="table-container">
+                <table style="width:100%; border-collapse: collapse; font-family: Arial, sans-serif;">
+                    <thead style="background-color: #f2f2f2; position: sticky; top: 0;">
                         <tr>
                         <th style="padding: 12px; border: 1px solid #ccc; text-align: left;">Keyword</th>
                         <th style="padding: 12px; border: 1px solid #ccc; text-align: left;">Service</th>
@@ -254,6 +255,8 @@
                         <tr><td style="padding: 10px; border: 1px solid #eee;">max.com</td><td style="padding: 10px; border: 1px solid #eee;">hbomax</td></tr>
                     </tbody>
                 </table>
+                </div>
+                <br>
 
                 <h2>Unsupervised Domain Clustering:</h2>
                 <p>For domain pairs not covered by keywords, we use an unsupervised learning approach to identify clusters of related ⟨DNS, SNI⟩ pairs based on temporal correlation—how often they appear near each other in time. We apply the Louvain clustering algorithm and assign each cluster to the service that dominates its traffic. If a service makes up ≥ 60% of a cluster's traffic, we label the entire cluster accordingly. This adds another 6.4% of traffic to our service mapping.</p>
