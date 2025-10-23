@@ -80,3 +80,13 @@ a {
   align-items: center;
   flex-direction: column;
 }
+
+@media (max-width: 600px) {
+  .middle-nav-bar {
+  display: flex;
+  flex-wrap: wrap;           /* allows items to wrap instead of overlap */
+  justify-content: center;   /* centers items when wrapped */
+  gap: 1rem;                 /* spacing between items */
+  flex-shrink: 0;            /* prevents nav from squishing */
+}
+}
