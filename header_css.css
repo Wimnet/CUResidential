@@ -81,7 +81,7 @@ a {
   flex-direction: column;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .middle-nav-bar {
   display: flex;
   flex-wrap: wrap;           /* allows items to wrap instead of overlap */
