@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Columbia Residential Traffic Analysis</title>
+    <title>Columbia Off-Campus Residential Traffic</title>
     <link rel="stylesheet" href="header_css.css">
     <link rel="stylesheet" href="methodology.css">
 </head>
@@ -14,9 +14,10 @@
             <img src="./figures/logo.png" alt="" class = "logo-img">
             <a href="https://www.columbia.edu/~ebk2141/"><img src="./figures/snl.png" alt="" class = "snl-img"></a>
         </div>
+        <h1>Off-Campus Residential Traffic From Columbia University</h1> <br>
         <div class = "nav-bar">
             <div class = "middle-nav-bar">
-                <a href="./index.html">Index</a>
+                <a href="./index.html">Home</a>
                 <a href="./datadescription.html">Data Description and Sharing</a>
                 <a href="./methodology.html">Methodology</a>
                 <a href="./findings.html">Findings</a>
@@ -28,21 +29,22 @@
     <div class = "about">
         <div class = "methodology parent">
             <div class = "data-collection">
-            <h1 class = "methodology-header">Data collection and anonymization pipeline</h1>
+            <h2 class = "methodology-header">Data collection and anonymization pipeline</h2>
             <div class = 'fig-div'>
                 <img src="./figures/topology-p4.png" alt="" class = "fig3 fig">
             </div>
             <p class = "methodology-text">This figures shows our data collection pipeline and the network topology. Shared graduate student apartments have one Ethernet port per bedroom, while other apartments have one Ethernet port per apartment. The ports connect to a switch in the residential building, which connects to an aggregation switch and then to the Internet via the campus network and a few providers. The aggregation switch mirrors both traffic to and from our residential buildings over 2x10Gbps dedicated fiber to a server in our nearby lab. Since Columbia has not deployed IPv6 in these buildings, we only study IPv4 traffic. <br>
                 
             Our data collection/anonymization pipeline followed established practices, was approved by Columbia’s IT, and received formal review and was declared exempt by our Institutional Review Board (IRB) as it is <i>not human-subjects research</i>. It anonymizes privacy-sensitive fields and discards personally identifiable information. We do not identify any human or study network usage below the level of buildings.
+            </p>
 
-</p>
-            </div>
-            <h1 class = "methodology-header">Mapping flows to services</h1>
+        </div>
+            <br>
+            <h2 class = "methodology-header">Mapping flows to services</h2>
             
-            <p class = "methodology-text">We associate each flow with a service (e.g., Netflix, YouTube) using a combination of domain keyword matching, unsupervised clustering, and transport-layer heuristics:
+            <p class = "methodology-text">We associate each flow with a service (e.g., Netflix, YouTube) using a combination of domain keyword matching, unsupervised clustering, and transport-layer heuristics.
 
-                <h2>Keyword-Based Mapping:</h2>
+                <h3>Keyword-Based Mapping:</h3>
                 <p>We match ⟨DNS, SNI⟩ domain pairs against a curated list of ~200 service-related keywords (e.g., domains containing "nflx" are mapped to Netflix). This rule-based mapping, built upon the public nDPI keyword set, accounts for 73% of traffic by volume. The list of keywords is provided below:</p><br>
                 <div class="table-container">
                 <table style="width:100%; border-collapse: collapse; font-family: Arial, sans-serif;">
@@ -258,10 +260,10 @@
                 </div>
                 <br>
 
-                <h2>Unsupervised Domain Clustering:</h2>
+                <h3>Unsupervised Domain Clustering:</h3>
                 <p>For domain pairs not covered by keywords, we use an unsupervised learning approach to identify clusters of related ⟨DNS, SNI⟩ pairs based on temporal correlation—how often they appear near each other in time. We apply the Louvain clustering algorithm and assign each cluster to the service that dominates its traffic. If a service makes up ≥ 60% of a cluster's traffic, we label the entire cluster accordingly. This adds another 6.4% of traffic to our service mapping.</p>
 
-                <h2>Transport-Level Heuristics:</h2>
+                <h3>Transport-Level Heuristics:</h3>
                 <p>For flows with no DNS or SNI data, we apply manual rules based on known transport-layer signatures (e.g., destination AS + port + protocol). Traffic on ports 16393–16402 or ports 3478–3497 from ASN 714 was classified as FaceTime. Port 51820 was used to identify WireGuard VPN, while port 3480 traffic from Microsoft's ASN (8075) indicated Microsoft Teams usage. Google Meet was detected via port 3478 traffic from Google's ASN (15169). Twitch traffic was identified using its ASN (46489), and Facebook Messenger by matching ASN 32934 with port 3478. We also labeled traffic from Ubisoft (ASN 49544) and PlayStation (ASN 33353). Finally, BitTorrent traffic was inferred from activity on ports 6881–6889.</p>
             </p>
         </div>

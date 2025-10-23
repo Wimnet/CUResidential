@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Columbia Residential Traffic Analysis</title>
+    <title>Columbia Off-Campus Residential Traffic</title>
     <link rel="stylesheet" href="header_css.css">
     <link rel="stylesheet" href="datadescription.css">
     <link rel="stylesheet" href="form.css">
@@ -15,9 +15,10 @@
             <img src="./figures/logo.png" alt="" class = "logo-img">
             <a href="https://www.columbia.edu/~ebk2141/"><img src="./figures/snl.png" alt="" class = "snl-img"></a>
         </div>
+        <h1>Off-Campus Residential Traffic From Columbia University</h1> <br>
         <div class = "nav-bar">
             <div class = "middle-nav-bar">
-                <a href="./index.html">Index</a>
+                <a href="./index.html">Home</a>
                 <a href="./datadescription.html">Data Description and Sharing</a>
                 <a href="./methodology.html">Methodology</a>
                 <a href="./findings.html">Findings</a>
@@ -28,7 +29,7 @@
 
     <div class = "description-page">
         <div class = "description">
-            <h1 class = "description-header"> Data Description </h1>
+            <h2 class = "description-header"> Data Description </h2>
             <p>Our pipeline <b>(upgraded in May 2025)</b> is built around an Intel Tofino programmable switch, which runs a scalable online network traffic anonymization system (<a href="https://sites.cs.ucsb.edu/~arpitgupta/pdfs/ontas.pdf">ONTAS [Kim et al., SIGCOMM 2019 Workshop on Network Meets AI & ML]</a>). This system efficiently anonymizes IP and MAC addresses and flexibly removes packet payload depending on protocol, while preserving key information such as DNS A records and TLS Server Name Indication (SNI).</p>
 
             <ul class = "outside"><li>IP Addresses:</li>
@@ -45,12 +46,12 @@
 
             <div class = "figures">
                 <div class = "metadata">
-                    <h2>Packet Traces</h2>
+                    <h3>Packet Traces</h2>
                     We provide access to anonymized, unsampled packet traces (.pcap), allowing you to extract header fields as needed. 
                 </div>
 
                 <div class = "metadata">
-                    <h2>Flow associated with domains and services</h2>
+                    <h3>Flow associated with domains and services</h2>
                     To reduce the burden of large-scale processing, we provide flows (5-tuples) associated with DNS domains and TLS SNIs, as well as services identified via domain keywords. Metadata example: <br><br>
 
                     <table border="1">
@@ -85,7 +86,7 @@
                 </table>
                 </div>
                 <div>
-                    <h2>DNS traffic metadata</h2>
+                    <h3>DNS traffic metadata</h2>
                     We also provide CSV files containing useful information extracted from DNS packets. Metadata example: <br><br>
                     <table border="1">
                     <tr>
@@ -123,24 +124,26 @@
             </div>
         </div>
         <div class = "access-condition">
-            <h1 class = "access-condition-header">
+            <br>
+            <h2 class = "access-condition-header">
                 Access Request Terms
-            </h1>
+            </h2>
             <p>We are authorized by Columbia University’s IT and Institutional Review Board (IRB) to share our datasets with external researchers.</p>
 
             <p>To ensure user privacy and prevent any risk of de-anonymization, we will share the dataset only with researchers who</p>
 
-            <ul class = "outside"><li>have IRB approval or exemption from their own institution, and</li>
+            <ul class = "outside"><li>have IRB approval or exemption from their own institution (or local equivalent), and</li>
 
             <li>agree to our <a href="https://docs.google.com/document/d/1KGgUU0nFO82xOnsFiaBV2s1hjM_HQur4fkDtA7fmVsg/edit?usp=sharing">Acceptable Use Policy</a></li></ul>
             
         </div>
 
         <div class = "access-request">
-            <h1 class = "access-request-header">
+            <br>
+            <h2 class = "access-request-header">
                 Access Request
-            </h1>
-            <p>Please complete <a href="https://forms.gle/V4PPABEm1w2YCZ8E8">the Research Data Request Form </a> to submit your IRB approval and request access.</p>
+            </h2>
+            <p>Please complete <a href="https://forms.gle/V4PPABEm1w2YCZ8E8">the Research Data Request Form </a> to submit your IRB approval (or local equivalent) and request access.</p>
         </div>
         <div class = "footer">
             <div class = "inside-footer">
