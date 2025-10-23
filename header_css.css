@@ -81,7 +81,7 @@ a {
 }
 
 /* 📱 Mobile view: stack vertically */
-@media (max-width: 1500px) {
+@media (max-width: 3000) {
   .middle-nav-bar {
     flex-direction: row;       /* keep it horizontal */
     flex-wrap: wrap;           /* allow items to wrap to next line if needed */
