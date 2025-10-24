@@ -91,6 +91,6 @@ a {
     flex-shrink: 0;            /* prevents nav from squishing */
   }
   h1 {
-    font-size: 28px; /* smaller font for smaller screens */
+    font-size: 26px; /* smaller font for smaller screens */
   }
 }
