@@ -68,6 +68,18 @@
         margin-top: 10px;
         margin-bottom: 10px;
         }
+        @media (max-width: 800px) {
+            .middle-nav-bar {
+                display: flex;
+                flex-wrap: wrap;           /* allows items to wrap instead of overlap */
+                justify-content: center;   /* centers items when wrapped */
+                gap: 1rem;                 /* spacing between items */
+                flex-shrink: 0;            /* prevents nav from squishing */
+            }
+            h1 {
+                font-size: 26px; /* smaller font for smaller screens */
+            }
+        }
     </style>
 </head>
 <body>
