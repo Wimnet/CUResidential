@@ -21,6 +21,7 @@
             <div class = "middle-nav-bar">
                 <a href="./index.html">Home</a>
                 <a href="./datadescription.html">Data Description and Sharing</a>
+                <a href="./approved.html">Approved Usage</a>
                 <a href="./methodology.html">Methodology</a>
                 <a href="./findings.html">Findings</a>
                 <a href="./contact.html">Contact</a>
@@ -36,14 +37,14 @@
                 <img src="./figures/topology-p4.png" alt="" class = "fig3 fig">
             </div>
             <p class = "methodology-text">This figures shows our data collection pipeline and the network topology. Shared graduate student apartments have one Ethernet port per bedroom, while other apartments have one Ethernet port per apartment. The ports connect to a switch in the residential building, which connects to an aggregation switch and then to the Internet via the campus network and a few providers. The aggregation switch mirrors both traffic to and from our residential buildings over 2x10Gbps dedicated fiber to a server in our nearby lab. Since Columbia has not deployed IPv6 in these buildings, we only study IPv4 traffic. <br>
-                
+
             Our data collection/anonymization pipeline followed established practices, was approved by Columbia’s IT, and received formal review and was declared exempt by our Institutional Review Board (IRB) as it is <i>not human-subjects research</i>. It anonymizes privacy-sensitive fields and discards personally identifiable information. We do not identify any human or study network usage below the level of buildings.
             </p>
 
         </div>
             <br>
             <h2 class = "methodology-header">Mapping flows to services</h2>
-            
+
             <p class = "methodology-text">We associate each flow with a service (e.g., Netflix, YouTube) using a combination of domain keyword matching, unsupervised clustering, and transport-layer heuristics.
 
                 <h3>Keyword-Based Mapping:</h3>
@@ -271,7 +272,7 @@
         </div>
         <div class = "footer">
             <div class = "inside-footer">
-                <p>&copy; 2025 Columbia University</p> 
+                <p>&copy; 2025 Columbia University</p>
                 <p>This work is supported in part by NSF grants OAC-2029295 and CNS-2212479</p>
             </div>
         </div>
