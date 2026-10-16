@@ -6,6 +6,7 @@
     <title>Columbia Off-Campus Residential Traffic</title>
     <link rel="stylesheet" href="header_css.css">
     <link rel="stylesheet" href="methodology.css">
+    <link rel="stylesheet" href="site.css">
 </head>
 <body>
     <header>
@@ -22,7 +23,7 @@
                 <a href="./index.html">Home</a>
                 <a href="./datadescription.html">Data Description and Sharing</a>
                 <a href="./approved.html">Approved Usage</a>
-                <a href="./methodology.html">Methodology</a>
+                <a href="./methodology.html" aria-current="page">Methodology</a>
                 <a href="./findings.html">Findings</a>
                 <a href="./contact.html">Contact</a>
             </div>
@@ -36,16 +37,15 @@
             <div class = 'fig-div'>
                 <img src="./figures/topology-p4.png" alt="" class = "fig3 fig">
             </div>
-            <p class = "methodology-text">This figures shows our data collection pipeline and the network topology. Shared graduate student apartments have one Ethernet port per bedroom, while other apartments have one Ethernet port per apartment. The ports connect to a switch in the residential building, which connects to an aggregation switch and then to the Internet via the campus network and a few providers. The aggregation switch mirrors both traffic to and from our residential buildings to the data collection servers over four 10 Gbps fiber pairs, which were deployed as part of the <a href="https://www.cosmos-lab.org/">NSF COSMOS</a> testbed fiber plant. Since Columbia has not deployed IPv6 in these buildings, we only study IPv4 traffic. <br>
+            <p class = "methodology-text">This figure shows our data collection pipeline and the network topology. Shared graduate student apartments have one Ethernet port per bedroom, while other apartments have one Ethernet port per apartment. The ports connect to a switch in the residential building, which connects to an aggregation switch and then to the Internet via the campus network and a few providers. The aggregation switch mirrors both traffic to and from our residential buildings to the data collection servers over four 10 Gbps fiber pairs, which were deployed as part of the <a href="https://www.cosmos-lab.org/">NSF COSMOS</a> testbed fiber plant. Since Columbia has not deployed IPv6 in these buildings, we only study IPv4 traffic.</p>
 
-            Our data collection/anonymization pipeline followed established practices, was approved by Columbia’s IT, and received formal review and was declared exempt by our Institutional Review Board (IRB) as it is <i>not human-subjects research</i>. It anonymizes privacy-sensitive fields and discards personally identifiable information. We do not identify any human or study network usage below the level of buildings.
-            </p>
+            <p class = "methodology-text">Our data collection/anonymization pipeline followed established practices, was approved by Columbia’s IT, and received formal review and was declared exempt by our Institutional Review Board (IRB) as it is <i>not human-subjects research</i>. It anonymizes privacy-sensitive fields and discards personally identifiable information. We do not identify any human or study network usage below the level of buildings.</p>
 
         </div>
             <br>
             <h2 class = "methodology-header">Mapping flows to services</h2>
 
-            <p class = "methodology-text">We associate each flow with a service (e.g., Netflix, YouTube) using a combination of domain keyword matching, unsupervised clustering, and transport-layer heuristics.
+            <div class = "methodology-text">We associate each flow with a service (e.g., Netflix, YouTube) using a combination of domain keyword matching, unsupervised clustering, and transport-layer heuristics.
 
                 <h3>Keyword-Based Mapping:</h3>
                 <p>We match ⟨DNS, SNI⟩ domain pairs against a curated list of ~200 service-related keywords (e.g., domains containing "nflx" are mapped to Netflix). This rule-based mapping, built upon the public nDPI keyword set, accounts for 73% of traffic by volume. The list of keywords is provided below:</p><br>
@@ -268,7 +268,7 @@
 
                 <h3>Transport-Level Heuristics:</h3>
                 <p>For flows with no DNS or SNI data, we apply manual rules based on known transport-layer signatures (e.g., destination AS + port + protocol). Traffic on ports 16393–16402 or ports 3478–3497 from ASN 714 was classified as FaceTime. Port 51820 was used to identify WireGuard VPN, while port 3480 traffic from Microsoft's ASN (8075) indicated Microsoft Teams usage. Google Meet was detected via port 3478 traffic from Google's ASN (15169). Twitch traffic was identified using its ASN (46489), and Facebook Messenger by matching ASN 32934 with port 3478. We also labeled traffic from Ubisoft (ASN 49544) and PlayStation (ASN 33353). Finally, BitTorrent traffic was inferred from activity on ports 6881–6889.</p>
-            </p>
+            </div>
         </div>
         <div class = "footer">
             <div class = "inside-footer">

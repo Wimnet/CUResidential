@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="header_css.css">
     <link rel="stylesheet" href="datadescription.css">
     <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="site.css">
 </head>
 <body>
     <header>
@@ -21,7 +22,7 @@
         <div class = "nav-bar">
             <div class = "middle-nav-bar">
                 <a href="./index.html">Home</a>
-                <a href="./datadescription.html">Data Description and Sharing</a>
+                <a href="./datadescription.html" aria-current="page">Data Description and Sharing</a>
                 <a href="./approved.html">Approved Usage</a>
                 <a href="./methodology.html">Methodology</a>
                 <a href="./findings.html">Findings</a>
@@ -35,11 +36,11 @@
             <h2 class = "description-header"> Data Description </h2>
             <p>Our pipeline <b>(upgraded in May 2025)</b> is built around an Intel Tofino programmable switch, which runs a scalable online network traffic anonymization system (<a href="https://sites.cs.ucsb.edu/~arpitgupta/pdfs/ontas.pdf">ONTAS [Kim et al., SIGCOMM 2019 Workshop on Network Meets AI & ML]</a>). This system efficiently anonymizes IP and MAC addresses and flexibly removes packet payload depending on protocol, while preserving key information such as DNS A records and TLS Server Name Indication (SNI).</p>
 
-            <ul class = "outside"><li>IP Addresses:</li>
+            <ul class = "outside"><li>IP Addresses:
 
             <ul class = "inside"><li>External IP addresses (outside the university): keep as is</li>
 
-            <li>IP addresses (of Columbia University): hash in a prefix-preserving manner for the subnets of the residential buildings and Columbia's campus network</li></ul>
+            <li>IP addresses (of Columbia University): hash in a prefix-preserving manner for the subnets of the residential buildings and Columbia's campus network</li></ul></li>
 
             <li>MAC Addresses: hash in a prefix-preserving manner to only preserve the Vendor ID</li>
 
@@ -48,14 +49,15 @@
             <li>Domains (DNS / SNI): only keeps the last three suffixes (i.e., for domain a.b.c.d, we only keep b.c.d)</li></ul>
             <div class = "figures">
                 <div class = "metadata">
-                    <h3>Packet Traces</h2>
+                    <h3>Packet Traces</h3>
                     We provide access to anonymized, unsampled packet traces (.pcap), allowing you to extract header fields as needed.
                 </div>
 
                 <div class = "metadata">
-                    <h3>Flow associated with domains and services</h2>
+                    <h3>Flow associated with domains and services</h3>
                     To reduce the burden of large-scale processing, we provide flows (5-tuples) associated with DNS domains and TLS SNIs, as well as services identified via domain keywords. Metadata example: <br><br>
 
+                    <div class="metadata-table-scroll flow-metadata" role="region" aria-label="Flow metadata fields" tabindex="0">
                     <table border="1">
                     <tr>
                         <th>Protocol</th>
@@ -85,11 +87,13 @@
                     <td></td>
                     <td></td>
                    </tr>
-                </table>
+                    </table>
+                    </div>
                 </div>
-                <div>
-                    <h3>DNS traffic metadata</h2>
+                <div class="metadata">
+                    <h3>DNS traffic metadata</h3>
                     We also provide CSV files containing useful information extracted from DNS packets. Metadata example: <br><br>
+                    <div class="metadata-table-scroll dns-metadata" role="region" aria-label="DNS traffic metadata fields" tabindex="0">
                     <table border="1">
                     <tr>
                         <th>Frame Time</th>
@@ -121,7 +125,8 @@
                     <td></td>
 
                     </tr>
-                </table>
+                    </table>
+                    </div>
                 </div>
             </div>
         </div>
