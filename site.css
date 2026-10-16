@@ -476,15 +476,19 @@ tr:hover td {
 
 /* Findings */
 .latest-results {
-  margin: 0 auto;
+  margin: -1.25rem auto 0;
 }
 
 .latest-results > .results-header {
   margin-bottom: 0.8rem;
 }
 
+.latest-results > p {
+  margin-bottom: 0;
+}
+
 .latest-results > h3 {
-  margin: 2rem 0 0;
+  margin: 1.25rem 0 0;
   padding: 1.35rem 1.5rem 0.7rem;
   background: var(--cu-surface);
   border: 1px solid var(--cu-border);
